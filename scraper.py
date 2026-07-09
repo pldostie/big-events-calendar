@@ -204,23 +204,23 @@ GRAND_SLAMS = [
     {"name":"Australian Open","start":date(2026,1,19),"end":date(2026,2,1),
      "location":"Melbourne Park, Melbourne, Australia",
      "wiki":"2026_Australian_Open","ms":False,
-     "tz":"Australia/Melbourne","qf_h":11,"sf_h":11,"final_h":19},
+     "tz":"Australia/Melbourne","qf_h":11,"sf_h":11,"final_h":19,"bbc_slug":"australian-open"},
     {"name":"Roland Garros","start":date(2026,5,25),"end":date(2026,6,7),
      "location":"Stade Roland Garros, Paris, France",
      "wiki":"2026_French_Open_(tennis)","ms":False,
-     "tz":"Europe/Paris","qf_h":12,"sf_h":12,"final_h":12},
+     "tz":"Europe/Paris","qf_h":12,"sf_h":12,"final_h":12,"bbc_slug":"french-open"},
     {"name":"Wimbledon","start":date(2026,6,29),"end":date(2026,7,13),
      "location":"All England Club, London, UK",
-     "wiki":"2026_Wimbledon_Championships","ms":True,
-     "tz":"Europe/London","qf_h":13,"sf_h":13,"final_h":14},
+     "wiki":"2026_Wimbledon_Championships","ms":False,  # plays all 14 days since 2022
+     "tz":"Europe/London","qf_h":13,"sf_h":13,"final_h":14,"bbc_slug":"wimbledon"},
     {"name":"US Open","start":date(2026,8,31),"end":date(2026,9,13),
      "location":"USTA Billie Jean King National Tennis Center, New York, USA",
      "wiki":"2026_US_Open_(tennis)","ms":False,
-     "tz":"America/New_York","qf_h":12,"sf_h":12,"final_h":16},
+     "tz":"America/New_York","qf_h":12,"sf_h":12,"final_h":16,"bbc_slug":"us-open"},
     {"name":"Australian Open","start":date(2027,1,18),"end":date(2027,1,31),
      "location":"Melbourne Park, Melbourne, Australia",
      "wiki":"2027_Australian_Open","ms":False,
-     "tz":"Australia/Melbourne","qf_h":11,"sf_h":11,"final_h":19},
+     "tz":"Australia/Melbourne","qf_h":11,"sf_h":11,"final_h":19,"bbc_slug":"australian-open"},
 ]
 
 def slam_sched(slam):
@@ -235,50 +235,132 @@ def slam_sched(slam):
         "F-M":(s+timedelta(13+ms),s+timedelta(13+ms)),
     }
 
-def wiki_players(slam):
-    """Try main slam page + dedicated singles draw pages to extract player names."""
+def _link_players_from_soup(soup, res):
+    """Extract player name pairs from Wikipedia <a> tag links (players are linked to their pages)."""
+    SKIP = {
+        "Wimbledon","Australian Open","Roland Garros","French Open","US Open",
+        "Tennis","Grand Slam","Open era","ATP","WTA","ITF","BBC","ESPN",
+        "Seeding (sports)","Wild card (sports)","Lucky loser","Qualifier",
+        "Walkover","Retirement (tennis)","Defending champion","Doubles",
+        "Mixed doubles","Boy","Girl",
+    }
+    def is_player(title):
+        return (title and " " in title and len(title) < 50
+                and not any(s.lower() in title.lower() for s in SKIP)
+                and not re.search(r"[\(\[0-9]", title))
+
+    for heading in soup.find_all(["h2","h3","h4","h5"]):
+        htext = heading.get_text(strip=True).lower()
+        if   "quarter" in htext: key = "QF"
+        elif "semi"    in htext: key = "SF"
+        elif htext in ("final","the final","finals") or htext.endswith(" final"): key = "Final"
+        else: continue
+
+        # Collect player links in the section under this heading
+        node = heading.find_next_sibling()
+        names = []
+        while node and getattr(node, "name", None) not in ["h2","h3","h4"]:
+            for a in getattr(node, "find_all", lambda *a, **k: [])(
+                    "a", href=re_mod.compile(r"^/wiki/[^:]+$")):
+                title = a.get("title","") or a.get_text(strip=True)
+                if is_player(title) and title not in names:
+                    names.append(title)
+            node = getattr(node, "find_next_sibling", lambda: None)()
+        for i in range(0, len(names) - 1, 2):
+            pair = (names[i], names[i+1])
+            if pair not in res[key]:
+                res[key].append(pair)
+
+def _text_players_from_soup(soup, res):
+    """Fallback: regex on page text for 'Player A def. Player B' patterns."""
+    name_pat = r"([A-ZÀ-ž\u0100-\u017E][a-zÀ-ž\u0100-\u017E'\-\.]+(?:\s[A-ZÀ-ž\u0100-\u017E][a-zÀ-ž\u0100-\u017E'\-\.]+)+)"
+    pats = [
+        name_pat + r"\s+(?:def\.|defeated|beat)\s+" + name_pat,
+        name_pat + r"\s+v\.?s?\.?\s+" + name_pat,
+    ]
+    SKIP = {"The","This","In","At","After","Before","Match","Round","Final","Open",
+            "Championship","Draw","Seeds","Notes","Tennis","Cup","Club","Park",
+            "Court","Centre","Grand","All","England","United","Roland","Garros",
+            "Billie","Jean","King","National","Women","Men","Singles","Doubles"}
+    for block in soup.find_all(["p","li","td","th","caption"]):
+        raw = block.get_text(separator=" ", strip=True)
+        low = raw.lower()
+        for key, kws in [
+            ("QF",    ["quarterfinal","quarter-final"]),
+            ("SF",    ["semifinal","semi-final"]),
+            ("Final", ["final"]),
+        ]:
+            if key == "Final" and any(w in low for w in ["semi","quarter"]): continue
+            if key == "SF"    and "quarter" in low: continue
+            if any(k in low for k in kws):
+                for pat in pats:
+                    for m in re.finditer(pat, raw):
+                        p1, p2 = m.group(1).strip(), m.group(2).strip()
+                        if (len(p1) > 4 and len(p2) > 4 and p1 != p2
+                                and p1.split()[0] not in SKIP
+                                and p2.split()[0] not in SKIP
+                                and (p1, p2) not in res[key]):
+                            res[key].append((p1, p2))
+
+def _bbc_players(slam, sc):
+    """Fetch BBC Sport scores-fixtures pages around QF/SF/Final dates for player names."""
     res = {"QF":[], "SF":[], "Final":[]}
+    slug = slam.get("bbc_slug")
+    if not slug:
+        return res
+    name_pat = r"([A-ZÀ-ž\u0100-\u017E][a-z][a-zÀ-ž\u0100-\u017E'\-\.]*(?:\s[A-ZÀ-ž\u0100-\u017E][a-z][a-zÀ-ž\u0100-\u017E'\-\.]*)+)"
+    SKIP = {"Women","Men","Singles","Doubles","Mixed","Wimbledon","Open","Australian",
+            "Roland","Garros","French","United","States","National","Tennis","Cup"}
+    round_dates = [
+        ("QF",    [sc["QF"][0], sc["QF"][1]]),
+        ("SF",    [sc["SF-W"][0], sc["SF-M"][0]]),
+        ("Final", [sc["F-W"][0], sc["F-M"][0]]),
+    ]
+    for key, dates in round_dates:
+        for d in dates:
+            if d < TODAY - timedelta(5) or d > TODAY + timedelta(60):
+                continue  # only fetch near-term dates
+            url = f"https://www.bbc.co.uk/sport/tennis/{slug}/scores-fixtures/{d.strftime('%Y-%m-%d')}"
+            try:
+                soup = get(url, delay=1.0)
+                # BBC renders match cards server-side; player names appear in the page text
+                page_text = soup.get_text(" ", strip=True)
+                # Find "Player A v Player B" patterns in BBC text
+                for m in re.finditer(name_pat + r"\s+v\.?\s+" + name_pat, page_text):
+                    p1, p2 = m.group(1).strip(), m.group(2).strip()
+                    if (len(p1) > 4 and len(p2) > 4 and p1 != p2
+                            and p1.split()[0] not in SKIP
+                            and p2.split()[0] not in SKIP
+                            and (p1, p2) not in res[key]):
+                        res[key].append((p1, p2))
+            except Exception as e:
+                print(f"  [Tennis] BBC {slug} {d}: {e}", file=sys.stderr)
+    return res
+
+def wiki_players(slam):
+    """Get QF/SF/Final player pairs from BBC Sport, Wikipedia (links + text)."""
+    res = {"QF":[], "SF":[], "Final":[]}
+    sc  = slam_sched(slam)
+
+    # Source 1: BBC Sport scores-fixtures (live, server-side rendered)
+    bbc = _bbc_players(slam, sc)
+    for k in res: res[k].extend(bbc[k])
+
+    # Source 2: Wikipedia — try main page + dedicated singles pages
     base = slam["wiki"]
-    # Main page + individual draw pages (often have results tables with player names)
-    urls = [
+    wiki_urls = [
         f"https://en.wikipedia.org/wiki/{base}",
         f"https://en.wikipedia.org/wiki/{base}_%E2%80%93_Women%27s_singles",
         f"https://en.wikipedia.org/wiki/{base}_%E2%80%93_Men%27s_singles",
     ]
-    name_pat = r"([A-ZÀ-žĀ-ž][a-zÀ-žĀ-ž'\-\.]+(?:\s[A-ZÀ-žĀ-ž][a-zÀ-žĀ-ž'\-\.]+)+)"
-    pats = [
-        name_pat + r"\s+(?:def\.|d\.|defeated)\s+" + name_pat,
-        name_pat + r"\s+vs?\.?\s+" + name_pat,
-    ]
-    SKIP = {"The","This","In","At","After","Before","Match","Round","Final",
-            "Open","Championship","Draw","Seeds","Notes","Tennis","Cup","Club",
-            "Park","Court","Centre","Grand","All","England","United","Roland",
-            "Garros","Billie","Jean","King","National"}
-    for url in urls:
+    for url in wiki_urls:
         try:
             soup = get(url, delay=1.5)
-            for block in soup.find_all(["p","li","td","th","h3","h4","caption"]):
-                raw = block.get_text(separator=" ", strip=True)
-                low = raw.lower()
-                for key, kws in [
-                    ("QF",    ["quarterfinal","quarter-final","quarter final"]),
-                    ("SF",    ["semifinal","semi-final","semi final"]),
-                    ("Final", ["final"]),
-                ]:
-                    if key == "Final" and any(w in low for w in ["semi","quarter"]): continue
-                    if key == "SF"    and "quarter" in low: continue
-                    if any(k in low for k in kws):
-                        for pat in pats:
-                            for m in re.finditer(pat, raw):
-                                p1, p2 = m.group(1).strip(), m.group(2).strip()
-                                if (len(p1) > 4 and len(p2) > 4
-                                        and p1 != p2
-                                        and p1.split()[0] not in SKIP
-                                        and p2.split()[0] not in SKIP
-                                        and (p1, p2) not in res[key]):
-                                    res[key].append((p1, p2))
+            _link_players_from_soup(soup, res)  # link-based (more reliable)
+            _text_players_from_soup(soup, res)  # text regex fallback
         except Exception as e:
-            print(f"  [Tennis] {slam['name']} ({url.split('/')[-1]}): {e}", file=sys.stderr)
+            print(f"  [Tennis] {slam['name']} wiki ({url.split('/')[-1][:30]}): {e}", file=sys.stderr)
+
     print(f"  [Tennis] {slam['name']} players — QF:{len(res['QF'])} SF:{len(res['SF'])} F:{len(res['Final'])}")
     return res
 
