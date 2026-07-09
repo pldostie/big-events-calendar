@@ -197,22 +197,29 @@ def scrape_f1():
 # ---------------------------------------------------------------------------
 # Tennis -- Grand Slams only
 # ---------------------------------------------------------------------------
+# tz = local timezone of the venue (for showing correct kickoff time)
+# qf_h / sf_h / final_h = approximate LOCAL hour for first match of that round
 GRAND_SLAMS = [
     {"name":"Australian Open","start":date(2026,1,19),"end":date(2026,2,1),
      "location":"Melbourne Park, Melbourne, Australia",
-     "wiki":"2026_Australian_Open","ms":False},
+     "wiki":"2026_Australian_Open","ms":False,
+     "tz":"Australia/Melbourne","qf_h":11,"sf_h":11,"final_h":19},
     {"name":"Roland Garros","start":date(2026,5,25),"end":date(2026,6,7),
      "location":"Stade Roland Garros, Paris, France",
-     "wiki":"2026_French_Open_(tennis)","ms":False},
-    {"name":"Wimbledon","start":date(2026,6,29),"end":date(2026,7,12),
+     "wiki":"2026_French_Open_(tennis)","ms":False,
+     "tz":"Europe/Paris","qf_h":12,"sf_h":12,"final_h":12},
+    {"name":"Wimbledon","start":date(2026,6,29),"end":date(2026,7,13),
      "location":"All England Club, London, UK",
-     "wiki":"2026_Wimbledon_Championships","ms":True},
+     "wiki":"2026_Wimbledon_Championships","ms":True,
+     "tz":"Europe/London","qf_h":13,"sf_h":13,"final_h":14},
     {"name":"US Open","start":date(2026,8,31),"end":date(2026,9,13),
      "location":"USTA Billie Jean King National Tennis Center, New York, USA",
-     "wiki":"2026_US_Open_(tennis)","ms":False},
+     "wiki":"2026_US_Open_(tennis)","ms":False,
+     "tz":"America/New_York","qf_h":12,"sf_h":12,"final_h":16},
     {"name":"Australian Open","start":date(2027,1,18),"end":date(2027,1,31),
      "location":"Melbourne Park, Melbourne, Australia",
-     "wiki":"2027_Australian_Open","ms":False},
+     "wiki":"2027_Australian_Open","ms":False,
+     "tz":"Australia/Melbourne","qf_h":11,"sf_h":11,"final_h":19},
 ]
 
 def slam_sched(slam):
@@ -228,78 +235,102 @@ def slam_sched(slam):
     }
 
 def wiki_players(slam):
-    """Extract QF/SF/Final player names from the Wikipedia slam page."""
+    """Try main slam page + dedicated singles draw pages to extract player names."""
     res = {"QF":[], "SF":[], "Final":[]}
-    url = f"https://en.wikipedia.org/wiki/{slam['wiki']}"
-    try:
-        soup = get(url, delay=2.0)
-        # Unicode-aware name pattern: Świątek, Djokovic, etc.
-        name_pat = r"([A-ZÀ-ž][a-zÀ-ž'\-\.]+(?:\s[A-ZÀ-ž][a-zÀ-ž'\-\.]+)+)"
-        pats = [
-            name_pat + r"\s+(?:def\.|d\.|defeated)\s+" + name_pat,
-            name_pat + r"\s+vs?\.?\s+" + name_pat,
-        ]
-        SKIP = {"The","This","In","At","After","Before","Match","Round",
-                "Final","Open","Championship","Draw","Seeds","Notes"}
-        for block in soup.find_all(["p","li","td","th","h3","h4","span"]):
-            raw = block.get_text(separator=" ", strip=True)
-            low = raw.lower()
-            for key, kws in [
-                ("QF",    ["quarterfinal","quarter-final","quarter final"]),
-                ("SF",    ["semifinal","semi-final","semi final"]),
-                ("Final", ["final"]),
-            ]:
-                # Prevent "semifinal" from matching "Final" bucket
-                if key == "Final" and any(w in low for w in ["semi","quarter"]): continue
-                if key == "SF"    and "quarter" in low: continue
-                if any(k in low for k in kws):
-                    for pat in pats:
-                        for m in re.finditer(pat, raw):
-                            p1, p2 = m.group(1).strip(), m.group(2).strip()
-                            if (len(p1) > 3 and len(p2) > 3
-                                    and p1 != p2
-                                    and p1 not in SKIP and p2 not in SKIP
-                                    and (p1, p2) not in res[key]):
-                                res[key].append((p1, p2))
-    except Exception as e:
-        print(f"  [Tennis] {slam['name']}: {e}", file=sys.stderr)
+    base = slam["wiki"]
+    # Main page + individual draw pages (often have results tables with player names)
+    urls = [
+        f"https://en.wikipedia.org/wiki/{base}",
+        f"https://en.wikipedia.org/wiki/{base}_%E2%80%93_Women%27s_singles",
+        f"https://en.wikipedia.org/wiki/{base}_%E2%80%93_Men%27s_singles",
+    ]
+    name_pat = r"([A-ZÀ-žĀ-ž][a-zÀ-žĀ-ž'\-\.]+(?:\s[A-ZÀ-žĀ-ž][a-zÀ-žĀ-ž'\-\.]+)+)"
+    pats = [
+        name_pat + r"\s+(?:def\.|d\.|defeated)\s+" + name_pat,
+        name_pat + r"\s+vs?\.?\s+" + name_pat,
+    ]
+    SKIP = {"The","This","In","At","After","Before","Match","Round","Final",
+            "Open","Championship","Draw","Seeds","Notes","Tennis","Cup","Club",
+            "Park","Court","Centre","Grand","All","England","United","Roland",
+            "Garros","Billie","Jean","King","National"}
+    for url in urls:
+        try:
+            soup = get(url, delay=1.5)
+            for block in soup.find_all(["p","li","td","th","h3","h4","caption"]):
+                raw = block.get_text(separator=" ", strip=True)
+                low = raw.lower()
+                for key, kws in [
+                    ("QF",    ["quarterfinal","quarter-final","quarter final"]),
+                    ("SF",    ["semifinal","semi-final","semi final"]),
+                    ("Final", ["final"]),
+                ]:
+                    if key == "Final" and any(w in low for w in ["semi","quarter"]): continue
+                    if key == "SF"    and "quarter" in low: continue
+                    if any(k in low for k in kws):
+                        for pat in pats:
+                            for m in re.finditer(pat, raw):
+                                p1, p2 = m.group(1).strip(), m.group(2).strip()
+                                if (len(p1) > 4 and len(p2) > 4
+                                        and p1 != p2
+                                        and p1.split()[0] not in SKIP
+                                        and p2.split()[0] not in SKIP
+                                        and (p1, p2) not in res[key]):
+                                    res[key].append((p1, p2))
+        except Exception as e:
+            print(f"  [Tennis] {slam['name']} ({url.split('/')[-1]}): {e}", file=sys.stderr)
+    print(f"  [Tennis] {slam['name']} players — QF:{len(res['QF'])} SF:{len(res['SF'])} F:{len(res['Final'])}")
     return res
 
 def scrape_tennis():
     events = []
     for slam in GRAND_SLAMS:
         if slam["end"] < TODAY - timedelta(60): continue
-        wurl = f"https://en.wikipedia.org/wiki/{slam['wiki']}"
-        sc = slam_sched(slam)
-        pl = wiki_players(slam)
+        wurl  = f"https://en.wikipedia.org/wiki/{slam['wiki']}"
+        sc    = slam_sched(slam)
+        pl    = wiki_players(slam)
+        slam_tz = ZoneInfo(slam.get("tz", "UTC"))
+        qf_h  = slam.get("qf_h",  13)
+        sf_h  = slam.get("sf_h",  13)
+        fin_h = slam.get("final_h", 14)
+
         for rnd in ["R1","R2","R3","R4"]:
             s, e = sc[rnd]
             events.append(Evt(name=f"{slam['name']} -- {rnd}", sport="Tennis",
                 start=s, end=e, location=slam["location"], url=wurl,
                 description=f"{slam['name']} {rnd} -- all courts"))
+
+        # QF: Women's day first, then Men's day (each get their own timed event)
         for i, day in enumerate(sc["QF"]):
             g = "Women's" if i == 0 else "Men's"
+            h = qf_h + i          # Women's at qf_h, Men's 1h later
             pairs = pl.get("QF", [])
             if i < len(pairs):
                 p1, p2 = pairs[i]
                 n = f"{slam['name']} QF ({g}) -- {p1} vs {p2}"
             else:
                 n = f"{slam['name']} QF ({g}) -- TBD"
+            sdt = datetime(day.year, day.month, day.day, h, 0, 0, tzinfo=slam_tz)
             events.append(Evt(name=n, sport="Tennis", start=day, end=day,
                 location=slam["location"], url=wurl,
-                description="Quarterfinal"))
-        for rk, g, pi in [("SF-W","Women's",0),("SF-M","Men's",1),
-                           ("F-W","Women's",0),("F-M","Men's",1)]:
-            day = sc[rk][0]; lbl = "SF" if rk.startswith("SF") else "Final"
+                description="Quarterfinal", start_dt=sdt))
+
+        # SF and Finals: each match on its own day with approximate kickoff time
+        for rk, g, pi in [("SF-W","Women's",0), ("SF-M","Men's",1),
+                           ("F-W", "Women's",0), ("F-M", "Men's",1)]:
+            day = sc[rk][0]
+            lbl = "SF" if rk.startswith("SF") else "Final"
+            h   = (sf_h if lbl == "SF" else fin_h) + pi  # Women's slightly earlier
             pairs = pl.get("SF" if lbl == "SF" else "Final", [])
             if pi < len(pairs):
                 p1, p2 = pairs[pi]
                 n = f"{slam['name']} {lbl} ({g}) -- {p1} vs {p2}"
             else:
                 n = f"{slam['name']} {lbl} ({g}) -- TBD"
+            sdt = datetime(day.year, day.month, day.day, h, 0, 0, tzinfo=slam_tz)
             events.append(Evt(name=n, sport="Tennis", start=day, end=day,
                 location=slam["location"], url=wurl,
-                description=f"{g} {lbl}"))
+                description=f"{g} {lbl}", start_dt=sdt))
+
     print(f"  [Tennis] {len(events)} events")
     return events
 
@@ -654,7 +685,6 @@ def build_ics(events):
 
     seen = set(); unique = []
     for e in events:
-        k = (e.name.lower().strip(), e.start)
         if k not in seen: seen.add(k); unique.append(e)
     unique.sort(key=lambda x: x.start)
 
@@ -672,37 +702,31 @@ def build_ics(events):
         if e.url:         ev.add("url", e.url)
         if e.description: ev.add("description", e.description)
         cal.add_component(ev)
+
     return cal.to_ical()
 
 # ---------------------------------------------------------------------------
-# Main
+# Entry point
 # ---------------------------------------------------------------------------
 def main():
-    print(f"Big Events Calendar -- {TODAY}")
-    print("=" * 55)
+    print("Fetching events…")
     all_events = []
     scrapers = [
-        ("F1",            scrape_f1),
-        ("Tennis",        scrape_tennis),
-        ("UFC",           scrape_ufc),
-        ("NFL Bears",     scrape_nfl_bears),
-        ("NBA",           scrape_nba),
-        ("NHL Canadiens", scrape_nhl_habs),
-        ("Rocket League", scrape_rocket_league),
-        ("World Cup",     scrape_world_cup),
-        ("Ubisoft",       scrape_ubisoft_games),
-        ("AAA Games",     scrape_aaa_games),
+        scrape_f1, scrape_tennis, scrape_ufc,
+        scrape_nfl_bears, scrape_nba, scrape_nhl_canadiens,
+        scrape_rocket_league, scrape_world_cup,
+        scrape_ubisoft_games, scrape_aaa_games,
     ]
-    for label, fn in scrapers:
-        print(f"\nScraping {label}...")
-        try: all_events.extend(fn())
-        except Exception as e: print(f"  [{label}] FATAL: {e}", file=sys.stderr)
+    for fn in scrapers:
+        try:
+            all_events.extend(fn())
+        except Exception as exc:
+            print(f"  [{fn.__name__}] FAILED: {exc}", file=sys.stderr)
 
-    print(f"\n{'='*55}")
-    print(f"Total events: {len(all_events)}")
     ics = build_ics(all_events)
-    with open("big_events.ics", "wb") as f: f.write(ics)
-    print("Saved --> big_events.ics")
+    out = Path("big_events.ics")
+    out.write_bytes(ics)
+    print(f"Wrote {out} ({out.stat().st_size} bytes, {len(all_events)} raw events)")
 
 if __name__ == "__main__":
     main()
