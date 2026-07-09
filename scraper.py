@@ -165,33 +165,87 @@ class Evt:
 # ---------------------------------------------------------------------------
 # F1 -- OpenF1 API (returns exact UTC datetimes)
 # ---------------------------------------------------------------------------
+# Full 2026 F1 calendar — hardcoded as guaranteed fallback (UTC race start times).
+# Converted from official schedule; updated when new races are announced.
+# fmt: (race_name, circuit, race_date, utc_hour, utc_min)
+F1_2026 = [
+    ("Australian Grand Prix",    "Albert Park Circuit",             date(2026, 3,15), 5, 0),
+    ("Chinese Grand Prix",       "Shanghai International Circuit",  date(2026, 3,22), 7, 0),
+    ("Japanese Grand Prix",      "Suzuka Circuit",                  date(2026, 4, 5), 5, 0),
+    ("Bahrain Grand Prix",       "Bahrain International Circuit",   date(2026, 4,19),15, 0),
+    ("Saudi Arabian Grand Prix", "Jeddah Corniche Circuit",         date(2026, 4,26),17, 0),
+    ("Miami Grand Prix",         "Miami International Autodrome",   date(2026, 5,10),20, 0),
+    ("Monaco Grand Prix",        "Circuit de Monaco",               date(2026, 5,24),13, 0),
+    ("Spanish Grand Prix",       "Circuit de Barcelona-Catalunya",  date(2026, 6, 7),13, 0),
+    ("Canadian Grand Prix",      "Circuit Gilles Villeneuve",       date(2026, 6,14),18, 0),
+    ("Austrian Grand Prix",      "Red Bull Ring",                   date(2026, 6,28),13, 0),
+    ("British Grand Prix",       "Silverstone Circuit",             date(2026, 7, 5),14, 0),
+    ("Dutch Grand Prix",         "Circuit Zandvoort",               date(2026, 8,23),13, 0),
+    ("Italian Grand Prix",       "Autodromo Nazionale Monza",       date(2026, 9, 6),13, 0),
+    ("Madrid Grand Prix",        "Circuito Urbano de Madrid",       date(2026, 9,13),13, 0),
+    ("Azerbaijan Grand Prix",    "Baku City Circuit",               date(2026, 9,26),11, 0),
+    ("Singapore Grand Prix",     "Marina Bay Street Circuit",       date(2026,10,11),12, 0),
+    ("United States Grand Prix", "Circuit of the Americas",         date(2026,10,25),20, 0),
+    ("Mexico City Grand Prix",   "Autodromo Hermanos Rodriguez",    date(2026,11, 1),20, 0),
+    ("São Paulo Grand Prix",     "Autodromo Jose Carlos Pace",      date(2026,11, 8),17, 0),
+    ("Las Vegas Grand Prix",     "Las Vegas Strip Circuit",         date(2026,11,21), 4, 0),
+    ("Qatar Grand Prix",         "Lusail International Circuit",    date(2026,11,29),16, 0),
+    ("Abu Dhabi Grand Prix",     "Yas Marina Circuit",              date(2026,12, 6),13, 0),
+]
+
 def scrape_f1():
+    """F1 races: hardcoded 2026 calendar + OpenF1 for precise completed-race times."""
     events = []
-    for year in [YEAR, YEAR+1]:
-        try:
-            r = requests.get("https://api.openf1.org/v1/sessions",
-                params={"year":year,"session_type":"Race"},timeout=20)
-            r.raise_for_status()
-            for s in r.json():
-                try:
-                    raw = s["date_start"]
-                    if "T" in raw:
-                        start_dt = datetime.fromisoformat(raw.replace("Z","+00:00"))
-                        start = start_dt.date()
-                        sdt = start_dt.astimezone(UTC)
-                    else:
-                        start = date.fromisoformat(raw[:10]); sdt = None
-                    end = date.fromisoformat(s.get("date_end",raw)[:10])
-                    events.append(Evt(
-                        name=f"{s['country_name']} Grand Prix", sport="F1",
-                        start=start, end=end,
-                        location=f"{s.get('circuit_short_name','')}, {s.get('country_name','')}",
-                        url=f"https://www.formula1.com/en/racing/{year}.html",
-                        description=f"{year} F1 Season",
-                        start_dt=sdt))
-                except: pass
-        except Exception as e:
-            print(f"  [F1] {year}: {e}", file=sys.stderr)
+
+    # --- 2026: start from guaranteed hardcoded calendar ---
+    for name, circuit, d, hh, mm in F1_2026:
+        sdt = datetime(d.year, d.month, d.day, hh, mm, 0, tzinfo=UTC)
+        events.append(Evt(name=name, sport="F1", start=d, end=d,
+                          location=circuit,
+                          url="https://www.formula1.com/en/racing/2026.html",
+                          description="2026 F1 Season", start_dt=sdt))
+
+    # --- Overlay precise times from OpenF1 for completed 2026 races ---
+    try:
+        r = requests.get("https://api.openf1.org/v1/sessions",
+                         params={"year": 2026, "session_type": "Race"},
+                         headers=HEADERS, timeout=20)
+        r.raise_for_status()
+        openf1 = {}
+        for s in r.json():
+            raw = s.get("date_start","")
+            if "T" in raw:
+                sdt = datetime.fromisoformat(raw.replace("Z","+00:00")).astimezone(UTC)
+                openf1[sdt.date()] = sdt          # key by date for easy lookup
+        # Update events whose date has a precise OpenF1 time
+        for e in events:
+            if e.sport == "F1" and e.start in openf1:
+                e.start_dt = openf1[e.start]
+    except Exception as ex:
+        print(f"  [F1] OpenF1 overlay: {ex}", file=sys.stderr)
+
+    # --- 2027: try Jolpica (may have next-year data early) ---
+    try:
+        r = requests.get("https://api.jolpi.ca/ergast/f1/2027/races.json",
+                         headers=HEADERS, timeout=20)
+        r.raise_for_status()
+        existing = {e.start for e in events if e.sport=="F1"}
+        for race in r.json()["MRData"]["RaceTable"]["Races"]:
+            d = date.fromisoformat(race["date"])
+            if d in existing: continue
+            t = race.get("time","")
+            sdt = None
+            if t:
+                hh, mm = int(t[:2]), int(t[3:5])
+                sdt = datetime(d.year, d.month, d.day, hh, mm, 0, tzinfo=UTC)
+            events.append(Evt(name=race["raceName"], sport="F1",
+                              start=d, end=d,
+                              location=race["Circuit"]["circuitName"],
+                              url="https://www.formula1.com/en/racing/2027.html",
+                              description="2027 F1 Season", start_dt=sdt))
+    except Exception as ex:
+        print(f"  [F1] 2027 schedule: {ex}", file=sys.stderr)
+
     print(f"  [F1] {len(events)} events")
     return events
 
