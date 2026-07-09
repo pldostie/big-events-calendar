@@ -8,100 +8,73 @@ REFRESH-INTERVAL;VALUE=DURATION:P1D
 X-PUBLISHED-TTL:PT12H
 X-WR-TIMEZONE:UTC
 BEGIN:VEVENT
-SUMMARY:[F1] Australia Grand Prix
-DTSTART:20260308T040000Z
-DTEND:20260308T070000Z
-UID:470d6b94-8136-4563-a247-af4226937dcc@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Melbourne\, Australia
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:[F1] China Grand Prix
-DTSTART:20260314T030000Z
-DTEND:20260314T060000Z
-UID:49ac2c48-9896-4fc3-b5d4-b90084b92882@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Shanghai\, China
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:[F1] China Grand Prix
+SUMMARY:[F1] Australian Grand Prix
 DTSTART:20260315T070000Z
 DTEND:20260315T100000Z
-UID:ef2a8907-bbdd-4068-a37d-449d1d6f3489@big-events
+UID:db33378a-01ca-4215-aae9-f321a42386d4@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Shanghai\, China
+LOCATION:Albert Park Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Japan Grand Prix
-DTSTART:20260329T050000Z
-DTEND:20260329T080000Z
-UID:85e75c50-8644-45f6-a0b3-a4a8cad4ced4@big-events
+SUMMARY:[F1] Chinese Grand Prix
+DTSTART:20260322T070000Z
+DTEND:20260322T100000Z
+UID:1315eb3d-0abc-46a6-8086-e1c2f8e2f05d@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Suzuka\, Japan
+LOCATION:Shanghai International Circuit
+URL:https://www.formula1.com/en/racing/2026.html
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:[F1] Japanese Grand Prix
+DTSTART:20260405T050000Z
+DTEND:20260405T080000Z
+UID:254b780c-b17f-47eb-82d6-f8b822cc52fb@big-events
+DESCRIPTION:2026 F1 Season
+LOCATION:Suzuka Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[F1] Bahrain Grand Prix
-DTSTART:20260412T150000Z
-DTEND:20260412T180000Z
-UID:cd4650c4-3240-4efd-b7fd-c6b639114173@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Sakhir\, Bahrain
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:[F1] Saudi Arabia Grand Prix
 DTSTART:20260419T170000Z
 DTEND:20260419T200000Z
-UID:485b7df9-eb25-4d55-a16c-2d1c5ee2400f@big-events
+UID:2a189e94-fabe-4eaa-94c9-c11c3da510f9@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Jeddah\, Saudi Arabia
+LOCATION:Bahrain International Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] United States Grand Prix
-DTSTART:20260502T160000Z
-DTEND:20260502T190000Z
-UID:6555461a-87ca-450d-9974-5dd5685966e7@big-events
+SUMMARY:[F1] Saudi Arabian Grand Prix
+DTSTART:20260426T170000Z
+DTEND:20260426T200000Z
+UID:aefde62a-a0d3-480a-a066-09a4bd57c053@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Miami\, United States
+LOCATION:Jeddah Corniche Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] United States Grand Prix
-DTSTART:20260503T170000Z
-DTEND:20260503T200000Z
-UID:adad99a7-872c-4645-81a5-6f4fe5be266c@big-events
+SUMMARY:[F1] Miami Grand Prix
+DTSTART:20260510T200000Z
+DTEND:20260510T230000Z
+UID:85bb3e1b-26e9-4382-8e04-11cdd0acd0f3@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Miami\, United States
+LOCATION:Miami International Autodrome
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Canada Grand Prix
-DTSTART:20260523T160000Z
-DTEND:20260523T190000Z
-UID:b29b5f1d-e5e7-41ad-9376-dd7c6c52a1a0@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Montreal\, Canada
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:[F1] Canada Grand Prix
+SUMMARY:[F1] Monaco Grand Prix
 DTSTART:20260524T200000Z
 DTEND:20260524T230000Z
-UID:8034a990-d540-4881-85eb-72afe9111552@big-events
+UID:07827588-06d3-4d4e-83a2-bad9289e1096@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Montreal\, Canada
+LOCATION:Circuit de Monaco
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros -- R1
 DTSTART;VALUE=DATE:20260525
 DTEND;VALUE=DATE:20260527
-UID:e595c70a-0191-4c10-8831-290cf265889d@big-events
+UID:d747e4e5-b823-4642-a529-03005d57e62f@big-events
 DESCRIPTION:Roland Garros R1 -- all courts
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
@@ -110,7 +83,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros -- R2
 DTSTART;VALUE=DATE:20260527
 DTEND;VALUE=DATE:20260529
-UID:8450db23-ce30-4f6e-8d05-2b81809d5266@big-events
+UID:0a219e04-c8d8-4d9a-9974-1c33f0141416@big-events
 DESCRIPTION:Roland Garros R2 -- all courts
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
@@ -119,7 +92,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros -- R3
 DTSTART;VALUE=DATE:20260529
 DTEND;VALUE=DATE:20260531
-UID:628c99e8-df71-409c-a51b-0f2f93278a8f@big-events
+UID:b832fb86-07e6-4d9d-a312-9256199851e5@big-events
 DESCRIPTION:Roland Garros R3 -- all courts
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
@@ -128,7 +101,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros -- R4
 DTSTART;VALUE=DATE:20260531
 DTEND;VALUE=DATE:20260602
-UID:2bd7dce0-ba60-45cb-a039-a02c9b346488@big-events
+UID:b83f2efb-2ad8-475e-a5fc-bda1a6d609a3@big-events
 DESCRIPTION:Roland Garros R4 -- all courts
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
@@ -137,7 +110,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros QF (Women's) -- TBD
 DTSTART;TZID=Europe/Paris:20260602T120000
 DTEND;TZID=Europe/Paris:20260602T150000
-UID:9982924a-452f-4dd1-931a-29e617788e85@big-events
+UID:2778eb64-8410-4309-8e41-c5260df3a1a1@big-events
 DESCRIPTION:Quarterfinal
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
@@ -146,7 +119,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros QF (Men's) -- TBD
 DTSTART;TZID=Europe/Paris:20260603T130000
 DTEND;TZID=Europe/Paris:20260603T160000
-UID:4e15f1b7-17a0-4c9f-80ec-a15598c44551@big-events
+UID:8d82cdd4-c3d8-43ca-9d2c-9460aacfa64f@big-events
 DESCRIPTION:Quarterfinal
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
@@ -155,7 +128,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros SF (Women's) -- TBD
 DTSTART;TZID=Europe/Paris:20260604T120000
 DTEND;TZID=Europe/Paris:20260604T150000
-UID:c3522a30-6ee2-46de-84a1-63c0a419e1c3@big-events
+UID:3ce8b863-bcb9-40bb-b745-f76cfc7259f1@big-events
 DESCRIPTION:Women's SF
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
@@ -164,7 +137,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros SF (Men's) -- TBD
 DTSTART;TZID=Europe/Paris:20260605T130000
 DTEND;TZID=Europe/Paris:20260605T160000
-UID:37c5fe6f-c372-4b47-b4fa-d23af02bfc17@big-events
+UID:4e83770e-349c-459f-a4f6-36c2bc3aafcd@big-events
 DESCRIPTION:Men's SF
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
@@ -173,52 +146,52 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros Final (Women's) -- TBD
 DTSTART;TZID=Europe/Paris:20260606T120000
 DTEND;TZID=Europe/Paris:20260606T150000
-UID:6fec9a54-c1fd-402a-8732-67cfbfca251f@big-events
+UID:ffb3384f-ff70-4563-bfb7-071d530edffe@big-events
 DESCRIPTION:Women's Final
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Monaco Grand Prix
+SUMMARY:[F1] Spanish Grand Prix
 DTSTART:20260607T130000Z
 DTEND:20260607T160000Z
-UID:5d90cd0a-6b3a-484c-b6ea-82ac9edbfbb7@big-events
+UID:8ade5210-0185-43c8-b0e9-6a22a61175a8@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Monte Carlo\, Monaco
+LOCATION:Circuit de Barcelona-Catalunya
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Tennis] Roland Garros Final (Men's) -- TBD
 DTSTART;TZID=Europe/Paris:20260607T130000
 DTEND;TZID=Europe/Paris:20260607T160000
-UID:d40ed767-bc63-41cd-b9f4-dffab9f5ef7e@big-events
+UID:eff2414a-1dd3-47e5-b3c5-6885e0e80258@big-events
 DESCRIPTION:Men's Final
 LOCATION:Stade Roland Garros\, Paris\, France
 URL:https://en.wikipedia.org/wiki/2026_French_Open_(tennis)
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Spain Grand Prix
+SUMMARY:[F1] Canadian Grand Prix
 DTSTART:20260614T130000Z
 DTEND:20260614T160000Z
-UID:716e87d8-a27d-4588-9de2-5b2b09490650@big-events
+UID:5decc623-11a7-47c4-af00-22bde1e36394@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Catalunya\, Spain
+LOCATION:Circuit Gilles Villeneuve
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Austria Grand Prix
+SUMMARY:[F1] Austrian Grand Prix
 DTSTART:20260628T130000Z
 DTEND:20260628T160000Z
-UID:725c7726-fad2-439e-8715-2c6581e339a2@big-events
+UID:10eb5ba2-aa81-4e3e-9fa1-8824e86de4fd@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Spielberg\, Austria
+LOCATION:Red Bull Ring
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon -- R1
 DTSTART;VALUE=DATE:20260629
 DTEND;VALUE=DATE:20260701
-UID:0a455548-06cc-4b1d-8e20-2ba065fb8cd8@big-events
+UID:4718e270-483e-4d11-be70-90d615e5fa54@big-events
 DESCRIPTION:Wimbledon R1 -- all courts
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -227,7 +200,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon -- R2
 DTSTART;VALUE=DATE:20260701
 DTEND;VALUE=DATE:20260703
-UID:26874a18-f926-4be4-a814-16b8dbf6aa04@big-events
+UID:b3e98749-3349-4a8e-88a3-e71ec23890b2@big-events
 DESCRIPTION:Wimbledon R2 -- all courts
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -236,34 +209,25 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon -- R3
 DTSTART;VALUE=DATE:20260703
 DTEND;VALUE=DATE:20260705
-UID:77294ab5-8f2d-4a15-86ca-0f1f9286c1f3@big-events
+UID:db29b81a-4ab9-42c6-b48d-ef9da55509da@big-events
 DESCRIPTION:Wimbledon R3 -- all courts
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] United Kingdom Grand Prix
-DTSTART:20260704T110000Z
-DTEND:20260704T140000Z
-UID:6477fc88-24d7-4312-a417-1d26ff6d647d@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Silverstone\, United Kingdom
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:[F1] United Kingdom Grand Prix
+SUMMARY:[F1] British Grand Prix
 DTSTART:20260705T140000Z
 DTEND:20260705T170000Z
-UID:37b73934-ab9c-497a-a39a-0040e36b8157@big-events
+UID:2c78fd2d-0791-4b01-b2bd-7a6ff2fb33ee@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Silverstone\, United Kingdom
+LOCATION:Silverstone Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon -- R4
 DTSTART;VALUE=DATE:20260705
 DTEND;VALUE=DATE:20260707
-UID:ef64fb9e-1da9-4600-b43a-0f327363c0fe@big-events
+UID:4d376c55-dc23-4e4a-b71d-18a2109f1522@big-events
 DESCRIPTION:Wimbledon R4 -- all courts
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -272,7 +236,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon QF (Women's) -- TBD
 DTSTART;TZID=Europe/London:20260707T130000
 DTEND;TZID=Europe/London:20260707T160000
-UID:9d7e19fa-ff80-4c86-831b-d5bfcacf9441@big-events
+UID:a5c752c7-0653-43c2-9fc9-b6caf4b53d1c@big-events
 DESCRIPTION:Quarterfinal
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -281,7 +245,7 @@ BEGIN:VEVENT
 SUMMARY:[WC] FIFA World Cup -- Egypt vs Argentina
 DTSTART:20260707T160000Z
 DTEND:20260707T190000Z
-UID:861f1c38-d2b3-4f84-bad1-7e4c6c883b25@big-events
+UID:710df851-b2bf-4a12-915b-9b58fe6e6d56@big-events
 DESCRIPTION:Round: Round of 16\nKickoff: 16:00 UTC\nVenue: Mercedes-Benz S
  tadium
 LOCATION:Mercedes-Benz Stadium
@@ -291,7 +255,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon QF (Men's) -- TBD
 DTSTART;TZID=Europe/London:20260708T140000
 DTEND;TZID=Europe/London:20260708T170000
-UID:5df6e137-f0cb-47a7-bb61-cb3c506acdca@big-events
+UID:a1b0f13d-b7ef-4efc-b613-9c5cf6ef63ca@big-events
 DESCRIPTION:Quarterfinal
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -300,7 +264,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon SF (Women's) -- TBD
 DTSTART;TZID=Europe/London:20260709T130000
 DTEND;TZID=Europe/London:20260709T160000
-UID:300f384e-4fbd-4e0b-b76e-036ae66ba5cf@big-events
+UID:e9321383-ed62-4acf-804a-cee3d901eed9@big-events
 DESCRIPTION:Women's SF
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -309,7 +273,7 @@ BEGIN:VEVENT
 SUMMARY:[WC] FIFA World Cup -- Morocco vs France
 DTSTART:20260709T200000Z
 DTEND:20260709T230000Z
-UID:8b4c7d6d-8c4c-44fe-8848-bed6828df3f5@big-events
+UID:eb9c84c1-75dc-49d8-a9bd-e557b4e52424@big-events
 DESCRIPTION:Round: Quarterfinals\nKickoff: 20:00 UTC\nVenue: Gillette Stad
  ium
 LOCATION:Gillette Stadium
@@ -319,7 +283,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon SF (Men's) -- TBD
 DTSTART;TZID=Europe/London:20260710T140000
 DTEND;TZID=Europe/London:20260710T170000
-UID:b62e97cd-86d8-455f-8d06-eb7e8c652b0e@big-events
+UID:95ee1ca4-dbca-4363-bfdc-4cfb43340b77@big-events
 DESCRIPTION:Men's SF
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -328,7 +292,7 @@ BEGIN:VEVENT
 SUMMARY:[WC] FIFA World Cup -- Belgium vs Spain
 DTSTART:20260710T190000Z
 DTEND:20260710T220000Z
-UID:1c4fdd7f-7a54-41a6-a8da-4baaa376e34a@big-events
+UID:de14e852-b5d4-43ef-9b02-0ce1c29dbf44@big-events
 DESCRIPTION:Round: Quarterfinals\nKickoff: 19:00 UTC\nVenue: SoFi Stadium
 LOCATION:SoFi Stadium
 URL:https://www.espn.com/soccer/scoreboard/_/league/fifa.world
@@ -337,7 +301,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon Final (Women's) -- TBD
 DTSTART;TZID=Europe/London:20260711T140000
 DTEND;TZID=Europe/London:20260711T170000
-UID:eef3f6b7-423a-46fa-ae14-49c1dba00cbb@big-events
+UID:cf9c1f3f-3a48-44dc-b690-9404f5dd68fb@big-events
 DESCRIPTION:Women's Final
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -346,7 +310,7 @@ BEGIN:VEVENT
 SUMMARY:[UFC] UFC 329
 DTSTART;TZID=America/New_York:20260711T220000
 DTEND;TZID=America/New_York:20260712T010000
-UID:0ca13b4f-764b-42c5-a2a1-2a035670d026@big-events
+UID:2aa0479d-2881-4fc6-9938-e5c84693ee25@big-events
 DESCRIPTION:Main card: 10:00 PM ET
 LOCATION:Jul 11\, 2026
 URL:https://en.wikipedia.org/wiki/List_of_UFC_events
@@ -355,7 +319,7 @@ BEGIN:VEVENT
 SUMMARY:[WC] FIFA World Cup -- England vs Norway
 DTSTART:20260711T210000Z
 DTEND:20260712T000000Z
-UID:f248be61-ba9e-4f61-a3d5-60af7c753248@big-events
+UID:aca5109c-4c96-479c-bffc-ed1951ccf6a5@big-events
 DESCRIPTION:Round: Quarterfinals\nKickoff: 21:00 UTC\nVenue: Hard Rock Sta
  dium
 LOCATION:Hard Rock Stadium
@@ -365,7 +329,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Wimbledon Final (Men's) -- TBD
 DTSTART;TZID=Europe/London:20260712T150000
 DTEND;TZID=Europe/London:20260712T180000
-UID:d2111c94-62bc-40f1-809a-af230ad9aee8@big-events
+UID:dfae5e99-a46d-4a48-8f13-9a6610a21085@big-events
 DESCRIPTION:Men's Final
 LOCATION:All England Club\, London\, UK
 URL:https://en.wikipedia.org/wiki/2026_Wimbledon_Championships
@@ -374,7 +338,7 @@ BEGIN:VEVENT
 SUMMARY:[WC] FIFA World Cup -- Switzerland vs Argentina
 DTSTART:20260712T010000Z
 DTEND:20260712T040000Z
-UID:7326755a-8a3e-43f2-b0cf-8e832f30bb51@big-events
+UID:a69d3ace-70bb-48e8-8f9e-a8a5e2c6190f@big-events
 DESCRIPTION:Round: Quarterfinals\nKickoff: 01:00 UTC\nVenue: GEHA Field at
   Arrowhead Stadium
 LOCATION:GEHA Field at Arrowhead Stadium
@@ -385,7 +349,7 @@ SUMMARY:[WC] FIFA World Cup -- Quarterfinal 2 Winner vs Quarterfinal 1 Win
  ner
 DTSTART:20260714T190000Z
 DTEND:20260714T220000Z
-UID:56fa0bf7-161f-4d7b-a253-4bd4bafd9042@big-events
+UID:01f9483e-b168-4593-ac53-360732be8c59@big-events
 DESCRIPTION:Round: Semifinals\nKickoff: 19:00 UTC\nVenue: AT&T Stadium
 LOCATION:AT&T Stadium
 URL:https://www.espn.com/soccer/scoreboard/_/league/fifa.world
@@ -395,7 +359,7 @@ SUMMARY:[WC] FIFA World Cup -- Quarterfinal 4 Winner vs Quarterfinal 3 Win
  ner
 DTSTART:20260715T190000Z
 DTEND:20260715T220000Z
-UID:679234f7-d1f0-4822-b573-3794f63f876b@big-events
+UID:106a2501-cec7-497b-a7e4-6afc9261d5cc@big-events
 DESCRIPTION:Round: Semifinals\nKickoff: 19:00 UTC\nVenue: Mercedes-Benz St
  adium
 LOCATION:Mercedes-Benz Stadium
@@ -405,71 +369,44 @@ BEGIN:VEVENT
 SUMMARY:[WC] FIFA World Cup -- Semifinal 2 Loser vs Semifinal 1 Loser
 DTSTART:20260718T210000Z
 DTEND:20260719T000000Z
-UID:6ecfcb3b-08ba-4c9e-b06e-dc6b8d28dc29@big-events
+UID:a9325cc7-218d-4869-addd-3c7fb8289fbe@big-events
 DESCRIPTION:Round: 3rd-Place Match\nKickoff: 21:00 UTC\nVenue: Hard Rock S
  tadium
 LOCATION:Hard Rock Stadium
 URL:https://www.espn.com/soccer/scoreboard/_/league/fifa.world
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Belgium Grand Prix
-DTSTART:20260719T130000Z
-DTEND:20260719T160000Z
-UID:2e103127-7220-4d6f-a29d-eb650433e294@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Spa-Francorchamps\, Belgium
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:[WC] FIFA World Cup -- Semifinal 2 Winner vs Semifinal 1 Winner
 DTSTART:20260719T190000Z
 DTEND:20260719T220000Z
-UID:a835e4b2-9fad-458e-aa7c-3d851e48a4f8@big-events
+UID:7f9d958b-d6cc-441b-8f99-f661651e84af@big-events
 DESCRIPTION:Round: Final\nKickoff: 19:00 UTC\nVenue: MetLife Stadium
 LOCATION:MetLife Stadium
 URL:https://www.espn.com/soccer/scoreboard/_/league/fifa.world
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Hungary Grand Prix
-DTSTART:20260726T130000Z
-DTEND:20260726T160000Z
-UID:269e6cdd-d1f3-4117-a413-02dc12186b1a@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Hungaroring\, Hungary
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:[UFC] UFC 330
 DTSTART;TZID=America/New_York:20260815T220000
 DTEND;TZID=America/New_York:20260816T010000
-UID:b2c15c9d-487a-4a86-8ba8-eb13932757ff@big-events
+UID:66cc9f8e-f628-4cbd-9c83-bcd3ce321f85@big-events
 DESCRIPTION:Main card: 10:00 PM ET
 LOCATION:Aug 15\, 2026
 URL:https://en.wikipedia.org/wiki/List_of_UFC_events
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Netherlands Grand Prix
-DTSTART:20260822T100000Z
-DTEND:20260822T130000Z
-UID:e0ce8e95-afd9-4ac8-81fa-4db343b8dd56@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Zandvoort\, Netherlands
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:[F1] Netherlands Grand Prix
+SUMMARY:[F1] Dutch Grand Prix
 DTSTART:20260823T130000Z
 DTEND:20260823T160000Z
-UID:1aca1c6b-f495-4ac0-99cf-525d10eae0f6@big-events
+UID:57b978dc-726e-432a-8ab6-91a8f159d38a@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Zandvoort\, Netherlands
+LOCATION:Circuit Zandvoort
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Tennis] US Open -- R1
 DTSTART;VALUE=DATE:20260831
 DTEND;VALUE=DATE:20260902
-UID:78e1b34f-0d2b-41b2-864a-5154cb9aedba@big-events
+UID:220ebc8f-baae-44a6-8778-567473aecf9d@big-events
 DESCRIPTION:US Open R1 -- all courts
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
@@ -478,7 +415,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] US Open -- R2
 DTSTART;VALUE=DATE:20260902
 DTEND;VALUE=DATE:20260904
-UID:656385ad-1460-40bc-97ac-f7b319b8c31a@big-events
+UID:eee76c6d-5c43-4a4f-bfc8-8c8ccc212cf5@big-events
 DESCRIPTION:US Open R2 -- all courts
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
@@ -487,25 +424,25 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] US Open -- R3
 DTSTART;VALUE=DATE:20260904
 DTEND;VALUE=DATE:20260906
-UID:8fb59796-e0d4-4017-8819-1cc186eb0148@big-events
+UID:a57d21ae-5941-4c66-bd67-27d77f575da6@big-events
 DESCRIPTION:US Open R3 -- all courts
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Italy Grand Prix
+SUMMARY:[F1] Italian Grand Prix
 DTSTART:20260906T130000Z
 DTEND:20260906T160000Z
-UID:9fe3a4b9-4a2b-46fd-b59c-f327317e045f@big-events
+UID:111d4418-763d-47ea-899c-8566dc04048e@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Monza\, Italy
+LOCATION:Autodromo Nazionale Monza
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Tennis] US Open -- R4
 DTSTART;VALUE=DATE:20260906
 DTEND;VALUE=DATE:20260908
-UID:079a407a-d080-48cf-8e01-b9b6aff4ed42@big-events
+UID:9ee11695-5ad8-4b3e-a6c0-1d199de9948b@big-events
 DESCRIPTION:US Open R4 -- all courts
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
@@ -514,7 +451,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] US Open QF (Women's) -- TBD
 DTSTART;TZID=America/New_York:20260908T120000
 DTEND;TZID=America/New_York:20260908T150000
-UID:3695957f-e9a9-46d0-a341-1469802b4c2e@big-events
+UID:ae6e1389-a8bc-4690-8cb9-56dbf8d951a4@big-events
 DESCRIPTION:Quarterfinal
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
@@ -523,7 +460,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] US Open QF (Men's) -- TBD
 DTSTART;TZID=America/New_York:20260909T130000
 DTEND;TZID=America/New_York:20260909T160000
-UID:7dd17850-5386-4ee5-9dfa-ba371397947b@big-events
+UID:ea1064ee-7a9e-4b75-b4d0-520db0be66b8@big-events
 DESCRIPTION:Quarterfinal
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
@@ -532,7 +469,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] US Open SF (Women's) -- TBD
 DTSTART;TZID=America/New_York:20260910T120000
 DTEND;TZID=America/New_York:20260910T150000
-UID:9bd2c82d-9a49-417f-b397-d9b082b62d75@big-events
+UID:c876a7ab-95ec-4611-8394-676746aa49b5@big-events
 DESCRIPTION:Women's SF
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
@@ -541,7 +478,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] US Open SF (Men's) -- TBD
 DTSTART;TZID=America/New_York:20260911T130000
 DTEND;TZID=America/New_York:20260911T160000
-UID:12cec33b-4673-4b8d-8e36-7f625c3fde7c@big-events
+UID:a3e0bbc7-fe47-4e61-85f6-e32cbc14c17f@big-events
 DESCRIPTION:Men's SF
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
@@ -550,25 +487,25 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] US Open Final (Women's) -- TBD
 DTSTART;TZID=America/New_York:20260912T160000
 DTEND;TZID=America/New_York:20260912T190000
-UID:d2b19232-eed0-4961-96b9-4a370736fb15@big-events
+UID:70a9f556-10bc-4cc0-8697-994b85c0e1d5@big-events
 DESCRIPTION:Women's Final
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Spain Grand Prix
+SUMMARY:[F1] Madrid Grand Prix
 DTSTART:20260913T130000Z
 DTEND:20260913T160000Z
-UID:48289160-1b44-4c85-acb6-ae43b398a788@big-events
+UID:99d7ef5f-650f-4bb7-8619-0681697ec194@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Madring\, Spain
+LOCATION:Circuito Urbano de Madrid
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Tennis] US Open Final (Men's) -- TBD
 DTSTART;TZID=America/New_York:20260913T170000
 DTEND;TZID=America/New_York:20260913T200000
-UID:a5609a21-84da-4750-a479-771aab48211c@big-events
+UID:dc5ec9b6-2d51-44c8-8564-b4083eee3e03@big-events
 DESCRIPTION:Men's Final
 LOCATION:USTA Billie Jean King National Tennis Center\, New York\, USA
 URL:https://en.wikipedia.org/wiki/2026_US_Open_(tennis)
@@ -577,7 +514,7 @@ BEGIN:VEVENT
 SUMMARY:[UFC] UFC 331
 DTSTART;TZID=America/New_York:20260919T220000
 DTEND;TZID=America/New_York:20260920T010000
-UID:abd65209-138f-4a86-b0f1-f4d2840e7bb5@big-events
+UID:40be8e32-6419-470b-a1fe-40fbc885f539@big-events
 DESCRIPTION:Main card: 10:00 PM ET
 LOCATION:Sep 19\, 2026
 URL:https://en.wikipedia.org/wiki/List_of_UFC_events
@@ -586,34 +523,25 @@ BEGIN:VEVENT
 SUMMARY:[F1] Azerbaijan Grand Prix
 DTSTART:20260926T110000Z
 DTEND:20260926T140000Z
-UID:24891568-9d99-4c35-a734-7eff7f507e86@big-events
+UID:b48d2268-9fe4-4ac8-ac5f-5714d700d8ca@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Baku\, Azerbaijan
-URL:https://www.formula1.com/en/racing/2026.html
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:[F1] Singapore Grand Prix
-DTSTART:20261010T090000Z
-DTEND:20261010T120000Z
-UID:e4a42dc4-acd3-4c7e-b035-7f8ef85233c1@big-events
-DESCRIPTION:2026 F1 Season
-LOCATION:Singapore\, Singapore
+LOCATION:Baku City Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[F1] Singapore Grand Prix
 DTSTART:20261011T120000Z
 DTEND:20261011T150000Z
-UID:fecf2bef-4636-4740-9c14-b28c80d3bcf9@big-events
+UID:92ecca14-2fb2-41dd-8e45-c91aa37ecbbf@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Singapore\, Singapore
+LOCATION:Marina Bay Street Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[NBA] NBA Season 2026-2027 Begins
 DTSTART;VALUE=DATE:20261021
 DTEND;VALUE=DATE:20261022
-UID:f88eb375-3423-4ef6-8a0e-75c77104bc25@big-events
+UID:784c3239-eaa3-48a1-8c7b-8dd14991d0f2@big-events
 DESCRIPTION:NBA Regular Season 2026-2027 opening night
 LOCATION:USA
 URL:https://en.wikipedia.org/wiki/2026%E2%80%9327_NBA_season
@@ -622,61 +550,61 @@ BEGIN:VEVENT
 SUMMARY:[F1] United States Grand Prix
 DTSTART:20261025T200000Z
 DTEND:20261025T230000Z
-UID:26ebe12d-2970-4007-84c7-44923c7c63a5@big-events
+UID:3762f536-8f0a-4e9d-8274-2f33c3bc9c1e@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Austin\, United States
+LOCATION:Circuit of the Americas
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Mexico Grand Prix
+SUMMARY:[F1] Mexico City Grand Prix
 DTSTART:20261101T200000Z
 DTEND:20261101T230000Z
-UID:ebf73e36-eac7-4489-962f-e61a75cfbd62@big-events
+UID:910ad297-e59a-4d28-9405-f5ba744492d9@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Mexico City\, Mexico
+LOCATION:Autodromo Hermanos Rodriguez
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] Brazil Grand Prix
+SUMMARY:[F1] São Paulo Grand Prix
 DTSTART:20261108T170000Z
 DTEND:20261108T200000Z
-UID:87cf6e7e-c467-4d3f-8241-abb392bdfbdf@big-events
+UID:b2033743-04b4-495f-98d0-cb7b42c72998@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Interlagos\, Brazil
+LOCATION:Autodromo Jose Carlos Pace
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] United States Grand Prix
-DTSTART:20261122T040000Z
-DTEND:20261122T070000Z
-UID:439073e0-4857-4e8e-ab2f-299652ad20cc@big-events
+SUMMARY:[F1] Las Vegas Grand Prix
+DTSTART:20261121T040000Z
+DTEND:20261121T070000Z
+UID:36d024bf-a57b-4579-ac0f-8bd639e6bffb@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Las Vegas\, United States
+LOCATION:Las Vegas Strip Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[F1] Qatar Grand Prix
 DTSTART:20261129T160000Z
 DTEND:20261129T190000Z
-UID:6bd3476e-108e-42c9-8fb2-ee03899c1d23@big-events
+UID:121dfb8d-23c8-4aa7-9d35-0ea1f01f0548@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Lusail\, Qatar
+LOCATION:Lusail International Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:[F1] United Arab Emirates Grand Prix
+SUMMARY:[F1] Abu Dhabi Grand Prix
 DTSTART:20261206T130000Z
 DTEND:20261206T160000Z
-UID:c61393e9-313e-42c0-8ac0-44e72511e122@big-events
+UID:2181a981-f59f-4ce5-b3f9-f96308140760@big-events
 DESCRIPTION:2026 F1 Season
-LOCATION:Yas Marina Circuit\, United Arab Emirates
+LOCATION:Yas Marina Circuit
 URL:https://www.formula1.com/en/racing/2026.html
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open -- R1
 DTSTART;VALUE=DATE:20270118
 DTEND;VALUE=DATE:20270120
-UID:91e8c142-758a-4658-b067-410197cc10b6@big-events
+UID:c879c0a9-f4a0-487e-aae0-8574a34ed664@big-events
 DESCRIPTION:Australian Open R1 -- all courts
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -685,7 +613,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open -- R2
 DTSTART;VALUE=DATE:20270120
 DTEND;VALUE=DATE:20270122
-UID:78d33ce8-03f8-4dad-8d6e-803ebd3de04b@big-events
+UID:19bf6f7f-6c90-4724-bf27-88b2b541e667@big-events
 DESCRIPTION:Australian Open R2 -- all courts
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -694,7 +622,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open -- R3
 DTSTART;VALUE=DATE:20270122
 DTEND;VALUE=DATE:20270124
-UID:5bd84e1c-15e1-48f3-a792-ae83ea453e25@big-events
+UID:b5e1bd09-f69a-49d9-af4c-2be6630b902a@big-events
 DESCRIPTION:Australian Open R3 -- all courts
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -703,7 +631,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open -- R4
 DTSTART;VALUE=DATE:20270124
 DTEND;VALUE=DATE:20270126
-UID:06ffd7d1-ba14-4524-9383-0aa26f6e1448@big-events
+UID:0de1dc72-2b03-4500-91db-9f4b66c07068@big-events
 DESCRIPTION:Australian Open R4 -- all courts
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -712,7 +640,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open QF (Women's) -- TBD
 DTSTART;TZID=Australia/Melbourne:20270126T110000
 DTEND;TZID=Australia/Melbourne:20270126T140000
-UID:e02a71c1-ce0c-4cdc-bdb5-9691b49433c6@big-events
+UID:ab6013bd-c09f-48c0-b64d-0eccb7672d1d@big-events
 DESCRIPTION:Quarterfinal
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -721,7 +649,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open QF (Men's) -- TBD
 DTSTART;TZID=Australia/Melbourne:20270127T120000
 DTEND;TZID=Australia/Melbourne:20270127T150000
-UID:3dea97be-acf6-4f8b-992b-c608c5754294@big-events
+UID:2308e7b8-8595-4310-9729-472145141d3b@big-events
 DESCRIPTION:Quarterfinal
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -730,7 +658,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open SF (Women's) -- TBD
 DTSTART;TZID=Australia/Melbourne:20270128T110000
 DTEND;TZID=Australia/Melbourne:20270128T140000
-UID:451b2d32-f68d-4a58-b6ee-a4ee7af131f3@big-events
+UID:4fd6d686-cf58-481e-9d3f-992188ae2bc1@big-events
 DESCRIPTION:Women's SF
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -739,7 +667,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open SF (Men's) -- TBD
 DTSTART;TZID=Australia/Melbourne:20270129T120000
 DTEND;TZID=Australia/Melbourne:20270129T150000
-UID:5c0687ef-973e-4925-a8a9-8a51e94a97cc@big-events
+UID:d4f87fd4-b4db-4032-8559-d4cf28e14def@big-events
 DESCRIPTION:Men's SF
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -748,7 +676,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open Final (Women's) -- TBD
 DTSTART;TZID=Australia/Melbourne:20270130T190000
 DTEND;TZID=Australia/Melbourne:20270130T220000
-UID:d1c5e063-a91a-484b-9747-adc0c1faf14f@big-events
+UID:d6fa34c1-7706-4849-9a58-8b8fb0ba5d0a@big-events
 DESCRIPTION:Women's Final
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -757,7 +685,7 @@ BEGIN:VEVENT
 SUMMARY:[Tennis] Australian Open Final (Men's) -- TBD
 DTSTART;TZID=Australia/Melbourne:20270131T200000
 DTEND;TZID=Australia/Melbourne:20270131T230000
-UID:bf403a18-febd-4c66-a377-937c854026bd@big-events
+UID:a647df62-1e07-4540-ade2-5b5edf355239@big-events
 DESCRIPTION:Men's Final
 LOCATION:Melbourne Park\, Melbourne\, Australia
 URL:https://en.wikipedia.org/wiki/2027_Australian_Open
@@ -766,7 +694,7 @@ BEGIN:VEVENT
 SUMMARY:[NBA] NBA Season 2027-2028 Begins
 DTSTART;VALUE=DATE:20271021
 DTEND;VALUE=DATE:20271022
-UID:9bb16453-32c4-4fc5-b8f8-412068528bf8@big-events
+UID:ba4eca7a-5afd-40cb-84da-004b78373317@big-events
 DESCRIPTION:NBA Regular Season 2027-2028 opening night
 LOCATION:USA
 URL:https://en.wikipedia.org/wiki/2027%E2%80%9328_NBA_season
