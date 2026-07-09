@@ -713,7 +713,7 @@ def main():
     all_events = []
     scrapers = [
         scrape_f1, scrape_tennis, scrape_ufc,
-        scrape_nfl_bears, scrape_nba, scrape_nhl_canadiens,
+        scrape_nfl_bears, scrape_nba, scrape_nhl_habs,
         scrape_rocket_league, scrape_world_cup,
         scrape_ubisoft_games, scrape_aaa_games,
     ]
