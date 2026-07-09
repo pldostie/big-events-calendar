@@ -16,6 +16,7 @@ Output: big_events.ics  (GitHub Actions runs daily at 05:00 UTC)
 """
 
 import re, sys, uuid, time, requests
+from pathlib import Path
 from bs4 import BeautifulSoup
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
