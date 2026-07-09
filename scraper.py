@@ -685,6 +685,7 @@ def build_ics(events):
 
     seen = set(); unique = []
     for e in events:
+        k = (e.name.lower().strip(), e.start)
         if k not in seen: seen.add(k); unique.append(e)
     unique.sort(key=lambda x: x.start)
 
